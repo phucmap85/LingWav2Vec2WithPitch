@@ -80,13 +80,13 @@ class PhoneDataset(Dataset):
         audio_root: Path | str,
         token_to_id: Dict[str, int],
         sampling_rate: int,
-        speed_perturb_prob: float,
-        speed_perturb_range: Tuple[float, float],
-        speed_perturb_bins: int,
-        pitch_perturb_prob: float,
-        pitch_perturb_range: Tuple[float, float],
-        pitch_perturb_bins: int,
-        pitch_perturb_n_fft: int,
+        speed_perturb_prob: float = 0.0,
+        speed_perturb_range: Tuple[float, float] = (1.0, 1.0),
+        speed_perturb_bins: int = 1,
+        pitch_perturb_prob: float = 0.0,
+        pitch_perturb_range: Tuple[float, float] = (0.0, 0.0),
+        pitch_perturb_bins: int = 1,
+        pitch_perturb_n_fft: int = 512,
     ):
         self.rows = rows
         self.audio_root = Path(audio_root)

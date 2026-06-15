@@ -82,13 +82,6 @@ def predict(
         audio_root=expand_path(cfg["audio_root"]),
         token_to_id=token_to_id,
         sampling_rate=int(cfg["sampling_rate"]),
-        speed_perturb_prob=float(cfg["eval_speed_perturb_prob"]),
-        speed_perturb_range=tuple(cfg["eval_speed_perturb_range"]),
-        speed_perturb_bins=int(cfg["eval_speed_perturb_bins"]),
-        pitch_perturb_prob=float(cfg["eval_pitch_perturb_prob"]),
-        pitch_perturb_range=tuple(cfg["eval_pitch_perturb_range"]),
-        pitch_perturb_bins=int(cfg["eval_pitch_perturb_bins"]),
-        pitch_perturb_n_fft=int(cfg["eval_pitch_perturb_n_fft"]),
     )
 
     feature_source = _feature_extractor_source(checkpoint_path, cfg["base_model"])
