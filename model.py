@@ -255,21 +255,9 @@ class LingWav2Vec2ForCTC(Wav2Vec2PreTrainedModel):
             target_length=enc_states.size(1),
             pitch_attention_mask=pitch_attention_mask,
         )
-        head_dtype = enc_states.dtype
-        pitch_states = pitch_states.to(dtype=head_dtype, device=enc_states.device)
-
-        for module in (
-            self.pitch_query_proj,
-            self.ling_norm,
-            self.ling_cross_attn,
-            self.ling_ffn_layer,
-            self.ling_out_norm,
-            self.ling_lm_head,
-        ):
-            module.to(dtype=head_dtype, device=enc_states.device)
 
         query_states = self.pitch_query_proj(torch.cat([enc_states, pitch_states], dim=-1))
-        ling_emb_states = self.ling_pos_enc(self.ling_emb(canonical_labels)).to(dtype=head_dtype)
+        ling_emb_states = self.ling_pos_enc(self.ling_emb(canonical_labels))
         ling_states = self.ling_norm(ling_emb_states)
 
         key_padding_mask = None
